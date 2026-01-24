@@ -1,31 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, EB_Garamond } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/Header";
+import { Header } from "@/components/Header/Header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const garamond = EB_Garamond({
   subsets: ["latin"],
+  variable: "--font-garamond",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Jessica Rosycka – Photographe",
+  title: "Jessica Rozycka – Photographe",
   description: "Portfolio photo – Événementiel, Plateau, Social.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      {/* These classes inject the CSS variables for the fonts */}
+      <body className={`${inter.variable} ${garamond.variable}`}>
         <Header />
         <main>{children}</main>
       </body>

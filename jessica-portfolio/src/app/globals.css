@@ -1,97 +1,113 @@
 /* --------------------
    CSS Reset (minimal)
-   -------------------- */
+-------------------- */
 
-   *,
-   *::before,
-   *::after {
-     box-sizing: border-box;
-   }
-   
-   * {
-     margin: 0;
-     padding: 0;
-   }
-   
-   html,
-   body {
-     max-width: 100vw;
-     overflow-x: hidden;
-   }
-   
-   /* --------------------
-      Design tokens
-      -------------------- */
-   
-   :root {
-     --color-bg: #000000;
-     --color-text: #ffffff;
-   }
-   
-   /* --------------------
-      Global base styles
-      -------------------- */
-   
-   body {
-     background: var(--color-bg);
-     color: var(--color-text);
-   
-     /* Inter by default (fallback included to avoid Times) */
-     font-family: var(--font-inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif);
-   
-     -webkit-font-smoothing: antialiased;
-     -moz-osx-font-smoothing: grayscale;
-   }
-   
-   /* --------------------
-      Typography rules
-      -------------------- */
-   
-   /* Headings: EB Garamond */
-   h1,
-   h2,
-   h3,
-   h4,
-   h5,
-   h6 {
-     font-family: var(--font-garamond, Georgia, "Times New Roman", serif);
-     font-weight: 400;
-   }
-   
-   /* Buttons: EB Garamond */
-   button {
-     font-family: var(--font-garamond, Georgia, "Times New Roman", serif);
-     font-size: inherit;
-     font-weight: inherit;
-     line-height: inherit;
-     color: inherit;
-   }
-   
-   /* Form fields: Inter */
-   input,
-   textarea,
-   select {
-     font-family: var(--font-inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif);
-     font-size: inherit;
-     font-weight: inherit;
-     line-height: inherit;
-     color: inherit;
-   }
-   
-   /* Links should never turn blue/purple */
-   a {
-     color: inherit;
-     text-decoration: none;
-   }
-   
-   /* --------------------
-      Utility classes
-      -------------------- */
-   
-   .fontHeading {
-     font-family: var(--font-garamond, Georgia, "Times New Roman", serif);
-   }
-   
-   .fontBody {
-     font-family: var(--font-inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif);
-   }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------
+   Page sizing + sticky footer
+-------------------- */
+
+html,
+body {
+  height: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* main grows to push footer to the bottom */
+main {
+  flex: 1;
+}
+
+/* --------------------
+   Design tokens
+-------------------- */
+
+:root {
+  --color-bg: #000000;
+  --color-text: #ffffff;
+}
+
+/* --------------------
+   Global base styles
+-------------------- */
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+
+  /* Inter by default (fallback included to avoid Times) */
+  font-family: var(--font-inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------
+   Typography rules
+-------------------- */
+
+/* Headings: EB Garamond */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-garamond, Georgia, "Times New Roman", serif);
+  font-weight: 400;
+}
+
+/* Buttons: EB Garamond */
+button {
+  font-family: var(--font-garamond, Georgia, "Times New Roman", serif);
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* Form fields: Inter */
+input,
+textarea,
+select {
+  font-family: var(--font-inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif);
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* Links should never turn blue/purple */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --------------------
+   Utility classes
+-------------------- */
+
+.fontHeading {
+  font-family: var(--font-garamond, Georgia, "Times New Roman", serif);
+}
+
+.fontBody {
+  font-family: var(--font-inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif);
+}

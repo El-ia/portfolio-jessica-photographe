@@ -1,0 +1,15 @@
+.footer {
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    font-family: var(--font-garamond);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    line-height: 1;
+
+    text-align: center;
+}

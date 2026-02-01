@@ -34,3 +34,30 @@ export function GalleryGrid() {
     </section>
   );
 }
+
+
+
+// import styles from "./GalleryGrid.module.css";
+// import type { Photo } from "@/sanity/types";
+
+// type GalleryGridProps = {
+//   photos: Photo[];
+// };
+
+// export function GalleryGrid({ photos }: GalleryGridProps) {
+//   return (
+//     <section className={styles.grid} aria-label="Photo gallery layout">
+//       {photos.map((photo) => (
+//         <div
+//           key={photo._id}
+//           className={`${styles.item} ${styles[photo.mosaicSize]}`}
+//         >
+//           {/* TEMPORAIRE : placeholder texte */}
+//           <span className={styles.label}>
+//             {photo.mosaicSize}
+//           </span>
+//         </div>
+//       ))}
+//     </section>
+//   );
+// }

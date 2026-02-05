@@ -1,143 +1,133 @@
 .grid {
-  display: grid;
-  grid-template-columns: repeat(14, 1fr);
-  gap: 4px;
-  padding: 1rem;
-  grid-auto-rows: 7px;
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    gap: 10px;
+    padding: 10px;
+    grid-auto-rows: 10px;
 }
 
 .item {
-  background: rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .label {
-  font-family: var(--font-inter);
-  font-size: 12px;
-  opacity: 0.6;
+    font-family: var(--font-inter);
+    font-size: 12px;
+    opacity: 0.6;
 }
 
+/* ---------- DESKTOP ---------- */
 .large {
-  grid-column: span 10;
-  grid-row: span 64;
+    grid-column: span 10;
+    grid-row: span 32;
 }
 
 .vertical {
-  grid-column: span 4;
-  grid-row: span 64;
+    grid-column: span 4;
+    grid-row: span 32;
 }
 
 .small {
-  grid-row: span 48;
+    grid-row: span 24;
 }
-
-/* Smalls: equal sides, wider center but still smaller */
-.small:nth-of-type(5) {
-  grid-column: span 5; /* left */
-}
-
-.small:nth-of-type(6) {
-  grid-column: span 4; /* center */
-}
-
-.small:nth-of-type(7) {
-  grid-column: span 5; /* right */
-}
-
-/* ---------- TABLET (4 columns mosaic) ---------- */
-@media (max-width: 1024px) {
-  .grid {
-        grid-template-columns: repeat(4, 1fr);
-        grid-auto-rows: 8px;
+  
+  /* Smalls desktop: equal sides, center smaller */
+  .small:nth-of-type(5) { grid-column: span 5; }
+  .small:nth-of-type(6) { grid-column: span 4; }
+  .small:nth-of-type(7) { grid-column: span 5; }
+  
+  /* ---------- TABLET (FIX HOLES) ---------- */
+  @media (max-width: 1024px) {
+    .grid {
+      /* ✅ 5 columns so 2 / 1 / 2 is possible */
+      grid-template-columns: repeat(5, 1fr);
+      grid-auto-rows: 8px;
     }
-
-  /* Row 1: large(3) + vertical(1) */
-  .large {
-        grid-column: span 3;
-        grid-row: span 56;
+  
+    .large {
+      grid-column: span 4;
+      grid-row: span 26;
     }
-
-  .vertical {
-        grid-column: span 1;
-        grid-row: span 56;
+  
+    .vertical {
+      grid-column: span 1;
+      grid-row: span 26;
     }
-
-  /* Row 3: 3 smalls with center narrower */
-  .small {
-        grid-row: span 44;
+  
+    /* Smalls: 2 / 1 / 2 */
+    .small {
+      grid-row: span 20;
     }
-
-  .small:nth-of-type(5),
-  .small:nth-of-type(7) {
-        grid-column: span 2; /* left & right wider */
+  
+    .small:nth-of-type(5) { grid-column: span 2; } /* left */
+    .small:nth-of-type(6) { grid-column: span 1; } /* center */
+    .small:nth-of-type(7) { grid-column: span 2; } /* right */
+  }
+  
+  /* ---------- MOBILE (UNCHANGED) ---------- */
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 8px;
     }
-
-  .small:nth-of-type(6) {
-        grid-column: span 0; /* reset */
+  
+    .large {
+      grid-column: 1 / -1;
+      grid-row: span 24;
     }
-
-  /* Trick: center becomes 1 col and we force it between the two wides */
-  .small:nth-of-type(6) {
-        grid-column: span 0;
+  
+    .vertical {
+      grid-column: span 1;
+      grid-row: span 24;
     }
-
-  /* Real center placement */
-  .small:nth-of-type(6) {
-        grid-column: span 0;
+  
+    .small {
+      grid-column: span 1;
+      grid-row: span 20;
     }
-
-  /* Clean, predictable: set explicit spans */
-  .small:nth-of-type(5) {
-        grid-column: span 2;
+  
+    .small:nth-of-type(6) {
+      grid-column: 1 / -1;
     }
-  .small:nth-of-type(6) {
-        grid-column: span 1;
-    }
-  .small:nth-of-type(7) {
-        grid-column: span 1;
-    }
-}
-
-/* ---------- MOBILE (2 columns mosaic) ---------- */
-@media (max-width: 640px) {
-  .grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 8px;
-    }
-
-  .large {
-        grid-column: 1 / -1; 
-        grid-row: span 52;
-    }
-
-  .vertical {
-        grid-column: span 1; /* 2 verticals side by side */
-        grid-row: span 52;
-    }
-
-  .small {
-        grid-column: span 1;
-        grid-row: span 46;
-    }
-
-  /* Center small full width (keeps your hierarchy without ugly micro-narrow) */
-  .small:nth-of-type(6) {
-        grid-column: 1 / -1;
-    }
-}
-
-/* ---------- VERY SMALL (1 column) ---------- */
+  }
+  
+/* ---------- VERY SMALL (FIX) ---------- */
 @media (max-width: 420px) {
-  .grid {
-        grid-template-columns: 1fr;
+    .grid {
+      grid-template-columns: 1fr;
     }
-
-  .large,
-  .vertical,
-  .small {
-        grid-column: 1 / -1;
+  
+    .large,
+    .vertical,
+    .small {
+      grid-column: 1 / -1;
     }
-}
+  
+    .small:nth-of-type(5),
+    .small:nth-of-type(6),
+    .small:nth-of-type(7) {
+      grid-column: 1 / -1;
+    }
+  
+    .item {
+      width: 100%;
+      justify-self: stretch;
+    }
+  
+    .image {
+      display: block; 
+    }
+  }

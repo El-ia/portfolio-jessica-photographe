@@ -3,7 +3,6 @@ export const homePhotosQuery = `
     _id,
     title,
     alt,
-    mosaicSize,
     image
   }
 `;

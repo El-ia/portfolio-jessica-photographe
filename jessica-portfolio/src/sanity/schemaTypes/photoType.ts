@@ -4,6 +4,7 @@ export const photoType = defineType({
   name: "photo",
   title: "Photos",
   type: "document",
+
   fields: [
     defineField({
       name: "title",
@@ -13,7 +14,8 @@ export const photoType = defineType({
 
     defineField({
       name: "alt",
-      title: "Texte alternatif (alt) — obligatoire",
+      title: "Texte alternatif (alt)",
+      description: "Description de l’image pour l’accessibilité et le SEO",
       type: "string",
       validation: (Rule) => Rule.required().min(3),
     }),
@@ -32,8 +34,7 @@ export const photoType = defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
-
-    // ✅ Where to display
+    
     defineField({
       name: "showOnHome",
       title: "Afficher sur l’accueil",
@@ -50,25 +51,10 @@ export const photoType = defineType({
 
     defineField({
       name: "slideshowOrder",
-      title: "Ordre dans le slideshow (optionnel)",
-      type: "number",
+      title: "Ordre dans le slideshow",
       description: "Plus petit = plus tôt dans le slideshow",
+      type: "number",
       hidden: ({ document }) => !document?.showInSlideshow,
-    }),
-
-    defineField({
-      name: "mosaicSize",
-      title: "Taille dans la mosaïque",
-      type: "string",
-      options: {
-        list: [
-          { title: "Large (2 colonnes)", value: "large" },
-          { title: "Verticale", value: "vertical" },
-          { title: "Small", value: "small" },
-        ],
-        layout: "radio",
-      },
-      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
@@ -81,9 +67,9 @@ export const photoType = defineType({
 
     defineField({
       name: "order",
-      title: "Ordre (optionnel)",
+      title: "Ordre global (optionnel)",
+      description: "Utilisé pour trier la galerie si nécessaire",
       type: "number",
-      description: "Plus petit = plus tôt dans la galerie",
     }),
   ],
 
@@ -95,9 +81,7 @@ export const photoType = defineType({
       showOnHome: "showOnHome",
       showInSlideshow: "showInSlideshow",
     },
-    prepare(selection) {
-      const { title, category, media, showOnHome, showInSlideshow } = selection;
-
+    prepare({ title, category, media, showOnHome, showInSlideshow }) {
       const flags = [
         showOnHome ? "Home" : null,
         showInSlideshow ? "Slideshow" : null,
@@ -113,4 +97,3 @@ export const photoType = defineType({
     },
   },
 });
-

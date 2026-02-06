@@ -1,4 +1,3 @@
-export type MosaicSize = "large" | "vertical" | "small";
 export type PhotoCategory = "evenementiel" | "plateau" | "social";
 
 export type SanityImage = {
@@ -16,13 +15,14 @@ export type Photo = {
 
   title?: string;
   alt: string;
+
   category?: PhotoCategory;
+
   showOnHome?: boolean;
   showInSlideshow?: boolean;
 
   slideshowOrder?: number;
   order?: number;
 
-  mosaicSize: MosaicSize;
   image: SanityImage;
 };

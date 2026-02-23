@@ -10,8 +10,8 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero photos={slideshowPhotos} />
-      <GalleryGrid photos={homePhotos} />
+      <Hero photos={slideshowPhotos} pageKey="home" />
+      <GalleryGrid photos={homePhotos} pageKey="home" />
     </>
   );
 }

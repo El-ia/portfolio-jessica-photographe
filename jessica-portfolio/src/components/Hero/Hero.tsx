@@ -1,13 +1,14 @@
 import Image from "next/image";
 import styles from "./Hero.module.css";
-import type { Photo } from "@/sanity/types";
+import type { Photo, PageKey } from "@/sanity/types";
 import { urlFor } from "@/sanity/lib/image";
 
 type HeroProps = {
   photos: Photo[];
+  pageKey?: PageKey; // home | plateau | social | evenementiel
 };
 
-export function Hero({ photos }: HeroProps) {
+export function Hero({ photos, pageKey = "home" }: HeroProps) {
   const firstPhoto = photos[0];
 
   if (!firstPhoto) {
@@ -18,10 +19,12 @@ export function Hero({ photos }: HeroProps) {
     );
   }
 
+  const image = firstPhoto.crops?.[pageKey] ?? firstPhoto.image;
+
   return (
     <section className={styles.hero}>
       <Image
-        src={urlFor(firstPhoto.image).width(2000).height(1200).url()}
+        src={urlFor(image).width(2000).height(1200).quality(90).url()}
         alt={firstPhoto.alt}
         fill
         priority

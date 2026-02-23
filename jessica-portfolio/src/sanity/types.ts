@@ -1,4 +1,5 @@
 export type PhotoCategory = "evenementiel" | "plateau" | "social";
+export type PageKey = "home" | PhotoCategory;
 
 export type SanityImage = {
   _type: "image";
@@ -10,9 +11,10 @@ export type SanityImage = {
   hotspot?: unknown;
 };
 
+export type Crops = Partial<Record<PageKey, SanityImage>>;
+
 export type Photo = {
   _id: string;
-
   title?: string;
   alt: string;
 
@@ -25,4 +27,6 @@ export type Photo = {
   order?: number;
 
   image: SanityImage;
+
+  crops?: Crops;
 };

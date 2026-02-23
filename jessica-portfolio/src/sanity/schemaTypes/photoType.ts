@@ -4,7 +4,6 @@ export const photoType = defineType({
   name: "photo",
   title: "Photos",
   type: "document",
-
   fields: [
     defineField({
       name: "title",
@@ -34,7 +33,7 @@ export const photoType = defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
-    
+
     defineField({
       name: "showOnHome",
       title: "Afficher sur l’accueil",
@@ -59,10 +58,42 @@ export const photoType = defineType({
 
     defineField({
       name: "image",
-      title: "Image",
+      title: "Image (source)",
       type: "image",
       options: { hotspot: true },
       validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
+      name: "crops",
+      title: "Recadrages par page (optionnel)",
+      type: "object",
+      fields: [
+        defineField({
+          name: "home",
+          title: "Home",
+          type: "image",
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: "plateau",
+          title: "Plateau",
+          type: "image",
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: "social",
+          title: "Social",
+          type: "image",
+          options: { hotspot: true },
+        }),
+        defineField({
+          name: "evenementiel",
+          title: "Événementiel",
+          type: "image",
+          options: { hotspot: true },
+        }),
+      ],
     }),
 
     defineField({
@@ -82,10 +113,7 @@ export const photoType = defineType({
       showInSlideshow: "showInSlideshow",
     },
     prepare({ title, category, media, showOnHome, showInSlideshow }) {
-      const flags = [
-        showOnHome ? "Home" : null,
-        showInSlideshow ? "Slideshow" : null,
-      ]
+      const flags = [showOnHome ? "Home" : null, showInSlideshow ? "Slideshow" : null]
         .filter(Boolean)
         .join(" · ");
 

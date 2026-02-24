@@ -3,15 +3,13 @@ export type PageKey = "home" | PhotoCategory;
 
 export type SanityImage = {
   _type: "image";
-  asset: {
-    _ref: string;
-    _type?: "reference";
-  };
+  asset: { _ref: string; _type?: "reference" };
   crop?: unknown;
   hotspot?: unknown;
 };
 
 export type Crops = Partial<Record<PageKey, SanityImage>>;
+export type OrderByPage = Partial<Record<PageKey, number>>;
 
 export type Photo = {
   _id: string;
@@ -19,14 +17,15 @@ export type Photo = {
   alt: string;
 
   category?: PhotoCategory;
-
   showOnHome?: boolean;
   showInSlideshow?: boolean;
 
   slideshowOrder?: number;
-  order?: number;
 
   image: SanityImage;
 
   crops?: Crops;
+  orderByPage?: OrderByPage;
+
+  orderFallback?: number;
 };

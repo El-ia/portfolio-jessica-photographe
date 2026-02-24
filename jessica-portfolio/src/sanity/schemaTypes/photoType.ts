@@ -5,11 +5,7 @@ export const photoType = defineType({
   title: "Photos",
   type: "document",
   fields: [
-    defineField({
-      name: "title",
-      title: "Titre (optionnel)",
-      type: "string",
-    }),
+    defineField({ name: "title", title: "Titre (optionnel)", type: "string" }),
 
     defineField({
       name: "alt",
@@ -64,42 +60,87 @@ export const photoType = defineType({
       validation: (Rule) => Rule.required(),
     }),
 
+    // ✅ Recadrages par page (on cache ce qui ne sert pas)
     defineField({
       name: "crops",
       title: "Recadrages par page (optionnel)",
       type: "object",
+      options: { collapsible: true, collapsed: false },
       fields: [
         defineField({
           name: "home",
           title: "Home",
           type: "image",
           options: { hotspot: true },
+          hidden: ({ document }) => !document?.showOnHome,
         }),
         defineField({
           name: "plateau",
           title: "Plateau",
           type: "image",
           options: { hotspot: true },
+          hidden: ({ document }) => document?.category !== "plateau",
         }),
         defineField({
           name: "social",
           title: "Social",
           type: "image",
           options: { hotspot: true },
+          hidden: ({ document }) => document?.category !== "social",
         }),
         defineField({
           name: "evenementiel",
           title: "Événementiel",
           type: "image",
           options: { hotspot: true },
+          hidden: ({ document }) => document?.category !== "evenementiel",
         }),
       ],
     }),
 
+    // ✅ NOUVEAU : ordre par page (clair + efficace)
     defineField({
-      name: "order",
-      title: "Ordre global (optionnel)",
-      description: "Utilisé pour trier la galerie si nécessaire",
+      name: "orderByPage",
+      title: "Ordre d’affichage par page (optionnel)",
+      type: "object",
+      options: { collapsible: true, collapsed: false },
+      fields: [
+        defineField({
+          name: "home",
+          title: "Ordre Home",
+          type: "number",
+          description: "Plus petit = plus tôt sur la Home",
+          hidden: ({ document }) => !document?.showOnHome,
+        }),
+        defineField({
+          name: "plateau",
+          title: "Ordre Plateau",
+          type: "number",
+          description: "Plus petit = plus tôt sur Plateau",
+          hidden: ({ document }) => document?.category !== "plateau",
+        }),
+        defineField({
+          name: "social",
+          title: "Ordre Social",
+          type: "number",
+          description: "Plus petit = plus tôt sur Social",
+          hidden: ({ document }) => document?.category !== "social",
+        }),
+        defineField({
+          name: "evenementiel",
+          title: "Ordre Événementiel",
+          type: "number",
+          description: "Plus petit = plus tôt sur Événementiel",
+          hidden: ({ document }) => document?.category !== "evenementiel",
+        }),
+      ],
+    }),
+
+    // (optionnel) fallback si aucun ordre par page n’est rempli
+    defineField({
+      name: "orderFallback",
+      title: "Ordre (fallback)",
+      description: "Utilisé si aucun ordre spécifique n’est défini",
       type: "number",
     }),
   ],

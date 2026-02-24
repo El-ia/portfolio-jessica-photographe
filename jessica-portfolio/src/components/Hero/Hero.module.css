@@ -1,10 +1,78 @@
 .hero {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
+  position: relative;
+  height: calc(100vh - var(--header-height));
+  width: 100%;
+  overflow: hidden;
+}
+
+.placeholder {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-garamond);
+  opacity: 0.5;
+}
+
+/* Container */
+.slideshow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* Each slide */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+
+  /* Key: make sure fade overlaps */
+  animation: crossFade var(--duration, 36s) linear infinite;
+  animation-delay: var(--delay, 0s);
+
+  will-change: opacity;
+}
+
+/* Next Image */
+.image {
+  object-fit: cover;
+}
+
+/*
+  TRUE crossfade (no black gap):
+  - Slide fades in
+  - stays visible long enough
+  - starts fading out while next is already fading in
+*/
+@keyframes crossFade {
+  0% {
+    opacity: 0;
   }
-  
-  .image {
-    object-fit: cover;
+  8% {
+    opacity: 1;
   }
+  58% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Optional: avoid motion for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    animation: none;
+    opacity: 0;
+  }
+  .slide:first-child {
+    opacity: 1;
+  }
+}

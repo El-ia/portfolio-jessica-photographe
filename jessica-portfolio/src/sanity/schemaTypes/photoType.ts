@@ -60,7 +60,6 @@ export const photoType = defineType({
       validation: (Rule) => Rule.required(),
     }),
 
-    // ✅ Recadrages par page (on cache ce qui ne sert pas)
     defineField({
       name: "crops",
       title: "Recadrages par page (optionnel)",
@@ -98,7 +97,6 @@ export const photoType = defineType({
       ],
     }),
 
-    // ✅ NOUVEAU : ordre par page (clair + efficace)
     defineField({
       name: "orderByPage",
       title: "Ordre d’affichage par page (optionnel)",
@@ -136,7 +134,6 @@ export const photoType = defineType({
       ],
     }),
 
-    // (optionnel) fallback si aucun ordre par page n’est rempli
     defineField({
       name: "orderFallback",
       title: "Ordre (fallback)",

@@ -33,6 +33,9 @@ body {
 /* main grows to push footer to the bottom */
 main {
   flex: 1;
+
+  /* ✅ compense le header fixed (ajuste la valeur si besoin) */
+  padding-top: var(--header-height);
 }
 
 /* --------------------
@@ -42,6 +45,9 @@ main {
 :root {
   --color-bg: #000000;
   --color-text: #ffffff;
+
+  /* ✅ hauteur "réservée" au header fixed (à ajuster si besoin) */
+  --header-height: 120px;
 }
 
 /* --------------------

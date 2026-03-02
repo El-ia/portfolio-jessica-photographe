@@ -14,9 +14,9 @@ type CSSVarStyle = React.CSSProperties & {
   "--duration"?: string;
 };
 
-const TOTAL_DURATION_SECONDS = 12; 
+const TOTAL_DURATION_SECONDS = 12;
 
-export function Hero({ photos, pageKey = "home" }: HeroProps) {
+export function Hero({ photos }: HeroProps) {
   if (!photos?.length) {
     return (
       <section className={styles.hero}>
@@ -31,7 +31,7 @@ export function Hero({ photos, pageKey = "home" }: HeroProps) {
     <section className={styles.hero} aria-label="Slideshow">
       <ul className={styles.slideshow}>
         {photos.map((photo, index) => {
-          const image = photo.crops?.[pageKey] ?? photo.image;
+          const image = photo.image;
 
           const cssVars: CSSVarStyle = {
             "--delay": `${index * step}s`,

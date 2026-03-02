@@ -1,8 +1,8 @@
 const cropsAndOrderSelection = `
-image,
-"crops": { home, plateau, social, evenementiel },
-"orderByPage": { home, plateau, social, evenementiel },
-orderFallback
+  image,
+  "crops": crops { home, plateau, social, evenementiel },
+  "orderByPage": orderByPage { home, plateau, social, evenementiel },
+  orderFallback
 `;
 
 export const homePhotosQuery = `

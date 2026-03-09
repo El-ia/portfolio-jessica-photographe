@@ -19,6 +19,7 @@ function getTileClass(index: number) {
 
 export function GalleryGrid({ photos, pageKey = "home" }: GalleryGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
 
   const close = useCallback(() => setActiveIndex(null), []);
 
@@ -42,6 +43,7 @@ export function GalleryGrid({ photos, pageKey = "home" }: GalleryGridProps) {
         {photos.map((photo, index) => {
           const tile = getTileClass(index);
           const thumbImage = photo.crops?.[pageKey] ?? photo.image;
+          const isLoaded = loadedImages[photo._id];
 
           return (
             <button
@@ -51,12 +53,20 @@ export function GalleryGrid({ photos, pageKey = "home" }: GalleryGridProps) {
               onClick={() => setActiveIndex(index)}
               aria-label={`Ouvrir ${photo.alt}`}
             >
+              {!isLoaded && <div className={styles.skeleton} aria-hidden="true" />}
+
               <Image
-                className={styles.image}
+                className={`${styles.image} ${isLoaded ? styles.imageLoaded : ""}`}
                 src={urlFor(thumbImage).width(1600).height(1600).quality(85).url()}
                 alt={photo.alt}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                onLoad={() =>
+                  setLoadedImages((prev) => ({
+                    ...prev,
+                    [photo._id]: true,
+                  }))
+                }
               />
             </button>
           );

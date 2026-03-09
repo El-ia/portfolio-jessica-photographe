@@ -26,8 +26,13 @@ export function Lightbox({
   const [dragOffset, setDragOffset] = useState(0);
   const [animate, setAnimate] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [currentLoaded, setCurrentLoaded] = useState(false);
 
   const photo = photos[index];
+
+  useEffect(() => {
+    setCurrentLoaded(false);
+  }, [index, isFullscreen]);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -140,6 +145,12 @@ export function Lightbox({
             </button>
 
             <div className={styles.carouselWrapper}>
+              {!currentLoaded && (
+                <div className={styles.loaderWrap} aria-hidden="true">
+                  <div className={styles.loader} />
+                </div>
+              )}
+
               <div
                 className={styles.carousel}
                 style={{
@@ -152,6 +163,7 @@ export function Lightbox({
               >
                 {[-1, 0, 1].map((offset) => {
                   const p = photos[(index + offset + photos.length) % photos.length];
+                  const isCurrent = offset === 0;
 
                   return (
                     <div key={offset} className={styles.carouselSlide}>
@@ -161,8 +173,13 @@ export function Lightbox({
                         width={2400}
                         height={1600}
                         sizes="85vw"
-                        className={styles.image}
-                        priority={offset === 0}
+                        className={`${styles.image} ${
+                          isCurrent && currentLoaded ? styles.imageLoaded : ""
+                        }`}
+                        priority={isCurrent}
+                        onLoad={() => {
+                          if (isCurrent) setCurrentLoaded(true);
+                        }}
                       />
                     </div>
                   );
@@ -184,14 +201,24 @@ export function Lightbox({
             >
               ✕
             </button>
+
+            {!currentLoaded && (
+              <div className={styles.loaderWrap} aria-hidden="true">
+                <div className={styles.loader} />
+              </div>
+            )}
+
             <Image
               src={urlFor(photo.image).quality(90).url()}
               alt={photo.alt}
               width={2400}
               height={1600}
               sizes="100vw"
-              className={styles.fullscreenImage}
+              className={`${styles.fullscreenImage} ${
+                currentLoaded ? styles.imageLoaded : ""
+              }`}
               priority
+              onLoad={() => setCurrentLoaded(true)}
             />
           </>
         )}

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./Hero.module.css";
 import type { Photo, PageKey } from "@/sanity/types";
@@ -6,7 +8,7 @@ import type React from "react";
 
 type HeroProps = {
   photos: Photo[];
-  pageKey?: PageKey; // home | plateau | social | evenementiel
+  pageKey?: PageKey;
 };
 
 type CSSVarStyle = React.CSSProperties & {
@@ -29,10 +31,8 @@ export function Hero({ photos }: HeroProps) {
 
   return (
     <section className={styles.hero} aria-label="Slideshow">
-      <ul className={styles.slideshow}>
+      <ul className={styles.slideshow} aria-hidden="true">
         {photos.map((photo, index) => {
-          const image = photo.image;
-
           const cssVars: CSSVarStyle = {
             "--delay": `${index * step}s`,
             "--duration": `${TOTAL_DURATION_SECONDS}s`,
@@ -42,7 +42,7 @@ export function Hero({ photos }: HeroProps) {
             <li key={photo._id} className={styles.slide} style={cssVars}>
               <Image
                 className={styles.image}
-                src={urlFor(image).width(2400).height(1600).quality(90).url()}
+                src={urlFor(photo.image).width(2400).height(1600).quality(90).url()}
                 alt={photo.alt}
                 fill
                 priority={index === 0}
@@ -52,6 +52,15 @@ export function Hero({ photos }: HeroProps) {
           );
         })}
       </ul>
+
+      <a
+        href="#gallery"
+        className={styles.scrollDown}
+        aria-label="Aller à la galerie"
+        title="Aller à la galerie"
+      >
+        <span className={styles.scrollDownIcon}>›</span>
+      </a>
     </section>
   );
 }

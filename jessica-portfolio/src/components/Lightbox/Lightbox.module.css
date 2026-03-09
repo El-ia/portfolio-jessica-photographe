@@ -3,15 +3,13 @@
     inset: 0;
     background: rgba(0, 0, 0, 0.96);
     z-index: 9999;
-  
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px;
-  }
-  
-  /* Container global */
-  .wrapper {
+}
+
+.wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -19,94 +17,111 @@
     gap: 24px;
     max-width: 100%;
     max-height: 100%;
-  }
-  
-  /* Fullscreen wrapper override */
-  .fullscreen {
+    overflow: hidden;
+    }
+
+.fullscreen {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-  }
-  
-  /* Top-right buttons fixed to screen */
-  .topRight {
+}
+
+.topRight {
     position: fixed;
     top: 28px;
     right: 32px;
     display: flex;
     gap: 18px;
     z-index: 10000;
-  }
-  
-  .topRight button {
+}
+
+.topRight button {
     background: none;
     border: none;
     color: white;
     font-size: 22px;
     cursor: pointer;
     opacity: 0.85;
-  }
-  
-  .topRight button:hover {
-    opacity: 0.6;
-  }
-  
-  /* Main layout */
-  .content {
-    display: flex;
+}
+
+.topRight button:hover { opacity: 0.6; }
+
+.arrow {
+    position: fixed;
+    top: 50%;
+    z-index: 10000;
+    transform: translateY(-50%);
+    display: inline-flex;
     align-items: center;
-    gap: 40px;
-  }
-  
-  /* Arrows outside image */
-  .arrow {
+    justify-content: center;
     background: none;
     border: none;
-    color: white;
-    font-size: 48px;
+    color: #fff;
     cursor: pointer;
     opacity: 0.8;
-  }
-  
-  .arrow:hover {
-    opacity: 0.5;
-  }
-  
-  /* Image container */
-  .imageContainer {
-    max-width: 85vw;
-    max-height: 80vh;
-  }
-  
-  /* Image (normal mode) */
-  .image {
+    padding: 0;
+}
+
+.arrow:hover { opacity: 0.5; }
+.arrowLeft { left: 90px; }
+.arrowRight { right: 90px; }
+
+.arrowIcon {
+    display: inline-block;
+    font-size: 48px;
+    line-height: 1;
+    transform-origin: center;
+    font-family: var(--font-inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif);
+}
+
+.arrowLeft .arrowIcon { transform: rotate(180deg); }
+.arrowRight .arrowIcon { transform: rotate(0deg); }
+
+.carouselWrapper {
+    width: 85vw;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    width: 300%;
+    gap: 40px;
+    will-change: transform;
+}
+
+.carouselSlide {
+    width: calc(33.333% - 27px);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
     max-width: 100%;
     max-height: 80vh;
     width: auto;
     height: auto;
-    object-fit: contain; 
+    object-fit: contain;
     display: block;
-  }
-  
-  /* Caption */
-  .caption {
+}
+
+.caption {
     color: rgba(255, 255, 255, 0.9);
     font-size: 14px;
     text-align: center;
     max-width: 90vw;
-  }
-  
-  /* Fullscreen image */
-  .fullscreenImage {
+}
+
+.fullscreenImage {
     max-width: 100vw;
     max-height: 100vh;
     width: auto;
     height: auto;
     object-fit: contain;
-  }
-  
-  /* Exit fullscreen button */
-  .exitFullscreen {
+}
+
+.exitFullscreen {
     position: fixed;
     top: 28px;
     right: 32px;
@@ -117,8 +132,10 @@
     cursor: pointer;
     z-index: 10001;
     opacity: 0.85;
-  }
-  
-  .exitFullscreen:hover {
-    opacity: 0.6;
-  }
+}
+
+.exitFullscreen:hover { opacity: 0.6; }
+
+@media (max-width: 640px) {
+.arrow { display: none; }
+}

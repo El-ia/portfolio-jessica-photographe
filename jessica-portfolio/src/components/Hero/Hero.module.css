@@ -22,6 +22,7 @@
   height: 100%;
   width: 100%;
   position: relative;
+  pointer-events: none;
 }
 
 /* Each slide */
@@ -30,49 +31,79 @@
   inset: 0;
   opacity: 0;
 
-  /* Key: make sure fade overlaps */
   animation: crossFade var(--duration, 36s) linear infinite;
   animation-delay: var(--delay, 0s);
 
   will-change: opacity;
 }
 
-/* Next Image */
+/* Image */
 .image {
   object-fit: cover;
 }
 
-/*
-  TRUE crossfade (no black gap):
-  - Slide fades in
-  - stays visible long enough
-  - starts fading out while next is already fading in
-*/
-@keyframes crossFade {
-  0% {
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
-  }
-  58% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
+.scrollDown {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.8;
+
+  padding: 12px 18px;
+  user-select: none;
+  text-decoration: none;
+
+  pointer-events: auto;
 }
 
-/* Optional: avoid motion for users who prefer reduced motion */
+.scrollDownIcon {
+  display: inline-block;
+  font-size: 48px;
+  line-height: 1;
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
+.scrollDown:hover {
+  opacity: 0.5;
+}
+
+@keyframes crossFade {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  58% { opacity: 1; }
+  75% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .slide {
-    animation: none;
-    opacity: 0;
+  .slide { animation: none; opacity: 0; }
+  .slide:first-child { opacity: 1; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    aspect-ratio: 3 / 2;
+    background: transparent;
   }
-  .slide:first-child {
-    opacity: 1;
+
+  .image {
+    object-fit: contain;
+  }
+
+  .scrollDown {
+    display: none;
   }
 }

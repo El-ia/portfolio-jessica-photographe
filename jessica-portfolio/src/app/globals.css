@@ -17,6 +17,11 @@
    Page sizing + sticky footer
 -------------------- */
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
 html,
 body {
   height: 100%;
@@ -33,9 +38,7 @@ body {
 /* main grows to push footer to the bottom */
 main {
   flex: 1;
-
-  /* ✅ compense le header fixed (ajuste la valeur si besoin) */
-  padding-top: var(--header-height);
+  padding-top: 0;
 }
 
 /* --------------------
@@ -45,9 +48,15 @@ main {
 :root {
   --color-bg: #000000;
   --color-text: #ffffff;
-
-  /* ✅ hauteur "réservée" au header fixed (à ajuster si besoin) */
   --header-height: 120px;
+}
+
+/* --------------------
+   Scroll fix (header sticky)
+-------------------- */
+
+#gallery {
+  scroll-margin-top: calc(var(--header-height) - 10px);
 }
 
 /* --------------------

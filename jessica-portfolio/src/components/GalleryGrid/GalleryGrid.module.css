@@ -12,14 +12,10 @@
 .item {
   position: relative;
   overflow: hidden;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: rgba(255, 255, 255, 0.08);
-
-  /* Neutralise le style natif du button */
   border: 0;
   padding: 0;
   cursor: pointer;

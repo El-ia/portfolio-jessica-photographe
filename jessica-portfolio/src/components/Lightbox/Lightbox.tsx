@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./Lightbox.module.css";
 import type { Photo } from "@/sanity/types";
 import { urlFor } from "@/sanity/lib/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type LightboxProps = {
   photos: Photo[];
@@ -26,13 +26,16 @@ export function Lightbox({
   const [dragOffset, setDragOffset] = useState(0);
   const [animate, setAnimate] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [currentLoaded, setCurrentLoaded] = useState(false);
+  const [loadedKey, setLoadedKey] = useState<string | null>(null);
 
   const photo = photos[index];
 
-  useEffect(() => {
-    setCurrentLoaded(false);
-  }, [index, isFullscreen]);
+  const currentImageKey = useMemo(() => {
+    if (!photo) return "";
+    return `${photo._id}-${isFullscreen ? "fullscreen" : "lightbox"}`;
+  }, [photo, isFullscreen]);
+
+  const currentLoaded = loadedKey === currentImageKey;
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -178,7 +181,9 @@ export function Lightbox({
                         }`}
                         priority={isCurrent}
                         onLoad={() => {
-                          if (isCurrent) setCurrentLoaded(true);
+                          if (isCurrent) {
+                            setLoadedKey(currentImageKey);
+                          }
                         }}
                       />
                     </div>
@@ -218,7 +223,7 @@ export function Lightbox({
                 currentLoaded ? styles.imageLoaded : ""
               }`}
               priority
-              onLoad={() => setCurrentLoaded(true)}
+              onLoad={() => setLoadedKey(currentImageKey)}
             />
           </>
         )}

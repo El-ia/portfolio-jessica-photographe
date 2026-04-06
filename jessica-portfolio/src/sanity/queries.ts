@@ -38,3 +38,14 @@ export const photosByCategoryQuery = `
     ${cropsAndOrderSelection}
   }
 `;
+
+export const reviewsQuery = `
+  *[_type == "review"]
+  | order(coalesce(order, 9999) asc, _createdAt desc) {
+    _id,
+    author,
+    text,
+    image,
+    order
+  }
+`;

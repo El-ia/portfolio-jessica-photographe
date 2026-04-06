@@ -29,3 +29,11 @@ export type Photo = {
 
   orderFallback?: number;
 };
+
+export type Review = {
+  _id: string;
+  author: string;
+  text: string;
+  image: SanityImage;
+  order?: number;
+};

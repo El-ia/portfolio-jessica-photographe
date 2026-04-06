@@ -1,0 +1,351 @@
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.hero {
+  width: min(1051px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 90px 48px 110px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 152px;
+  align-items: start;
+}
+
+.portraitWrap {
+  width: 100%;
+}
+
+.portrait {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.title {
+  font-family: var(--font-garamond);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 28px;
+}
+
+.copy {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 34px;
+}
+
+.copy p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.valuesBlock {
+  margin-bottom: 28px;
+}
+
+.valuesTitle {
+  font-family: var(--font-garamond);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 26px;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  gap: 40px;
+}
+
+.valueItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  opacity: 0.95;
+}
+
+.values span {
+  font-size: 15px;
+}
+
+.contactButton {
+  margin-top: 12px;
+  min-width: 132px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-garamond);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: opacity 160ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.contactButton:hover {
+  opacity: 0.7;
+}
+
+/* ─────────────────────────────────────────
+   CLIENTS
+───────────────────────────────────────── */
+.clientsSection {
+  padding: 48px 0 60px;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-family: var(--font-garamond);
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 60px;
+}
+
+.clientsSection .sectionTitle {
+  margin-bottom: 60px;
+}
+
+.logoMarquee {
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  padding-top: 48px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.logoTrack {
+  display: flex;
+  align-items: center;
+  gap: 88px;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+.logoItem {
+  flex: 0 0 150px;
+  width: 150px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 42px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.95;
+  filter: brightness(0) invert(1);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* ─────────────────────────────────────────
+   REVIEWS
+───────────────────────────────────────── */
+.reviewsSection {
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  padding: 90px 0 72px;
+}
+
+/* ─────────────────────────────────────────
+   INSTAGRAM
+───────────────────────────────────────── */
+/* .instagramSection {
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  position: relative;
+}
+
+.instagramOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+  pointer-events: none;
+}
+
+.instagramOverlay > * {
+  pointer-events: auto;
+}
+
+.instagramHandle {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.instagramGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.instagramItem {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.instagramImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 240ms ease;
+}
+
+.instagramItem:hover .instagramImage {
+  transform: scale(1.04);
+} */
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — 1000px
+───────────────────────────────────────── */
+@media (max-width: 1000px) {
+  .hero {
+    grid-template-columns: 260px 1fr;
+    gap: 52px;
+  }
+
+  .reviewsGrid {
+    gap: 36px;
+  }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — 768px  (tablette)
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  .hero {
+    width: calc(100% - 48px);
+    grid-template-columns: 1fr;
+    gap: 40px;
+    justify-items: center;
+    text-align: center;
+    padding: 73px 40px;
+  }
+
+  .portraitWrap {
+    max-width: 280px;
+    width: 100%;
+  }
+
+  .heroText {
+    max-width: 560px;
+    width: 100%;
+  }
+
+  .values {
+    justify-content: center;
+  }
+
+  .contactButton {
+    margin: 10px auto 0;
+  }
+
+  .reviewsGrid {
+    width: calc(100% - 48px);
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .instagramGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .valuesBlock {
+    margin: 50px 0;
+  }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE — 480px  (mobile)
+───────────────────────────────────────── */
+@media (max-width: 480px) {
+  .hero {
+    width: calc(100% - 32px);
+    padding: 44px 24px 64px;
+    gap: 32px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .copy p {
+    font-size: 14px;
+  }
+
+  .valuesTitle {
+    font-size: 17px;
+  }
+
+  .values {
+    grid-template-columns: repeat(2, max-content);
+    gap: 18px 32px;
+  }
+
+  .clientsSection {
+    padding: 36px 0 48px;
+  }
+  
+  .clientsSection .sectionTitle {
+    margin-bottom: 22px;
+  }
+  
+  .logoMarquee {
+    padding-top: 36px;
+  }
+
+  .sectionTitle {
+    font-size: 22px;
+    margin-bottom: 34px;
+  }
+
+  .logoTrack {
+    gap: 48px;
+  }
+  
+  .logoItem {
+    flex: 0 0 110px;
+    width: 110px;
+    height: 36px;
+  }
+  
+  .logo {
+    max-height: 32px;
+  }
+
+  .reviewsSection {
+    padding: 36px 0 56px;
+  }
+
+  .reviewsGrid {
+    width: calc(100% - 32px);
+  }
+
+  .reviewImage {
+    width: 180px;
+    height: 220px;
+  }
+}

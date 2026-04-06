@@ -33,10 +33,13 @@ export default function ContactPage({ searchParams }: Props) {
           <p className={styles.text}>Réponse généralement sous 24h.</p>
         </div>
 
-        {/* TODO: brancher Formspree ici quand Jessica aura créé le formulaire */}
-        {/* action="https://formspree.io/f/XXXXXXX" method="POST" */}
 
-        <form className={styles.form}>
+
+        <form
+          className={styles.form}
+          action="https://formspree.io/f/mnjgzjgq"
+          method="POST"
+        >
           <input
             type="hidden"
             name="_subject"
@@ -98,7 +101,7 @@ export default function ContactPage({ searchParams }: Props) {
             />
           </div>
 
-          <button type="button" className={styles.button}>
+          <button type="submit" className={styles.button}>
             SUBMIT
           </button>
 

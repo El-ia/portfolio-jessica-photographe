@@ -30,10 +30,6 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-
-  animation: crossFade var(--duration, 36s) linear infinite;
-  animation-delay: var(--delay, 0s);
-
   will-change: opacity;
 }
 
@@ -78,16 +74,9 @@
   opacity: 0.5;
 }
 
-@keyframes crossFade {
-  0% { opacity: 0; }
-  8% { opacity: 1; }
-  58% { opacity: 1; }
-  75% { opacity: 0; }
-  100% { opacity: 0; }
-}
 
 @media (prefers-reduced-motion: reduce) {
-  .slide { animation: none; opacity: 0; }
+  .slide { animation: none !important; opacity: 0; }
   .slide:first-child { opacity: 1; }
 }
 

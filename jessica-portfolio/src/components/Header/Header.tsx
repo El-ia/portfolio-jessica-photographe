@@ -267,9 +267,7 @@ export function Header() {
               </a>
 
               <a
-              href={`mailto:?subject=${encodeURIComponent(
-                "Jessica Rozycka"
-              )}&body=${encodeURIComponent(SITE_URL)}`}
+              href={`mailto:?subject=${encodeURIComponent("Jessica Rozycka — Photographe")}&body=${encodeURIComponent("Voici le site de Jessica Rozycka, photographe : " + SITE_URL)}`}
               className={styles.shareCircle}
               aria-label="Partager par email"
               >

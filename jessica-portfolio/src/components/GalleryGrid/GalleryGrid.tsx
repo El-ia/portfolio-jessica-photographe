@@ -5,7 +5,11 @@ import styles from "./GalleryGrid.module.css";
 import type { Photo, PageKey } from "@/sanity/types";
 import { urlFor } from "@/sanity/lib/image";
 import { useCallback, useState } from "react";
-import { Lightbox } from "@/components/Lightbox/Lightbox";
+import dynamic from "next/dynamic";
+const Lightbox = dynamic(
+  () => import("@/components/Lightbox/Lightbox").then((m) => m.Lightbox),
+  { ssr: false }
+);
 
 type GalleryGridProps = {
   photos: Photo[];
@@ -57,7 +61,7 @@ export function GalleryGrid({ photos, pageKey = "home" }: GalleryGridProps) {
 
               <Image
                 className={`${styles.image} ${isLoaded ? styles.imageLoaded : ""}`}
-                src={urlFor(thumbImage).width(1600).height(1600).quality(85).url()}
+                src={urlFor(thumbImage).width(1200).height(1200).quality(85).url()}
                 alt={photo.alt}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

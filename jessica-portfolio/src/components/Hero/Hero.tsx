@@ -4,15 +4,15 @@ import Image from "next/image";
 import styles from "./Hero.module.css";
 import type { Photo, PageKey } from "@/sanity/types";
 import { urlFor } from "@/sanity/lib/image";
-import type React from "react";
+import type { CSSProperties } from "react";
 
 type HeroProps = {
   photos: Photo[];
   pageKey?: PageKey;
 };
 
-const TOTAL_DURATION = 12; // seconds
-const FADE_PCT = 8; // % of cycle for fade-in and fade-out
+const TOTAL_DURATION = 12;
+const FADE_PCT = 8;
 
 export function Hero({ photos }: HeroProps) {
   if (!photos?.length) {
@@ -42,19 +42,24 @@ export function Hero({ photos }: HeroProps) {
       <style>{keyframesCSS}</style>
       <ul className={styles.slideshow} aria-hidden="true">
         {photos.map((photo, index) => {
-          const slideStyle: React.CSSProperties = {
+          const delay = index === 0
+            ? -(fadePct / 100) * TOTAL_DURATION
+            : index * step;
+
+          const slideStyle: CSSProperties = {
             animationName: animName,
             animationDuration: `${TOTAL_DURATION}s`,
-            animationDelay: `${index * step}s`,
+            animationDelay: `${delay}s`,
             animationTimingFunction: "linear",
             animationIterationCount: "infinite",
+            animationFillMode: "backwards",
           };
 
           return (
             <li key={photo._id} className={styles.slide} style={slideStyle}>
               <Image
                 className={styles.image}
-                src={urlFor(photo.image).width(2400).height(1600).quality(90).url()}
+                src={urlFor(photo.image).width(1920).height(1280).quality(80).url()}
                 alt={photo.alt}
                 fill
                 priority={index === 0}

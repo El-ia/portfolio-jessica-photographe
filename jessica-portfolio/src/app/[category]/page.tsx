@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import { client } from "@/sanity/lib/client";
 import { photosByCategoryQuery } from "@/sanity/queries";
 import { GalleryGrid } from "@/components/GalleryGrid/GalleryGrid";

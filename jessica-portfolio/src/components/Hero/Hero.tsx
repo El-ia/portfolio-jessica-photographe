@@ -58,6 +58,10 @@ export function Hero({ photos }: HeroProps) {
         className={styles.scrollDown}
         aria-label="Aller à la galerie"
         title="Aller à la galerie"
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById("gallery")?.scrollIntoView({ behavior: "smooth" });
+        }}
       >
         <span className={styles.scrollDownIcon}>›</span>
       </a>

@@ -24,8 +24,8 @@
 
 .title {
   font-family: var(--font-garamond);
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 28px;
+    font-weight: 500;
   line-height: 1.1;
   margin-bottom: 28px;
 }
@@ -48,7 +48,7 @@
 .valuesTitle {
   font-family: var(--font-garamond);
   font-size: 17px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 26px;
 }
 

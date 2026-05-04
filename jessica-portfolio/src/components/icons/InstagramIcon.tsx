@@ -4,7 +4,7 @@ type IconProps = {
     title?: string;
   };
   
-  export function InstagramIcon({ size = 20, className, title }: IconProps) {
+  export function InstagramIcon({ size = 24, className, title }: IconProps) {
     return (
       <svg
         width={size}
@@ -15,6 +15,8 @@ type IconProps = {
         aria-hidden={title ? undefined : true}
         role={title ? "img" : "presentation"}
         fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="7"
       >
         {title ? <title>{title}</title> : null}
   

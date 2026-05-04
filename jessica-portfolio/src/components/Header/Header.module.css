@@ -51,7 +51,6 @@
   flex: 1;
 }
 
-/* ── Lien desktop ── */
 .link {
   font-family: var(--font-garamond);
   font-size: 18px;
@@ -113,7 +112,7 @@
   opacity: 0.6;
 }
 
-/* ── Mobile actions (burger + insta) ── */
+/* Mobile actions */
 .mobileActions {
   display: none;
   margin-left: auto;
@@ -123,7 +122,7 @@
   z-index: 102;
 }
 
-/* ── Burger button ── */
+/* Burger button */
 .menuButton {
   width: 28px;
   height: 16px;
@@ -159,7 +158,7 @@
   transform: translateY(-7.5px) rotate(-45deg);
 }
 
-/* ── Menu mobile overlay ── */
+/* Mobile menu */
 .mobileMenu {
   position: fixed;
   inset: 0;
@@ -200,13 +199,12 @@
   transition: opacity 160ms ease;
 }
 
-
 .mobileLink::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -6px; 
+  bottom: -6px;
   height: 1.5px;
   background: #fff;
   transform: scaleX(0);
@@ -249,9 +247,148 @@
   opacity: 0.5;
 }
 
-/* ── Responsive ── */
-@media (max-width: 1024px) {
+/* Share modal */
+.shareOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
 
+.shareModal {
+  width: min(420px, 100%);
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(16px);
+  padding: 40px 50px 40px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.shareTitle {
+  margin: 0 0 22px;
+  font-family: var(--font-garamond);
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.shareInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #ebe7e2;
+  border-radius: 6px;
+  padding: 12px 12px 12px 14px;
+  margin-bottom: 22px;
+}
+
+.shareUrl {
+  font-size: 14px;
+  line-height: 1.3;
+  color: rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copyButton {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: #ded8d2;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: opacity 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.copyButton:hover {
+  opacity: 0.85;
+}
+
+.copyButtonCopied {
+  background: #ffffff;
+  color: #000;
+}
+
+.copyButtonIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.shareIcons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.shareCircle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #272525;
+  color: #fff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: opacity 160ms ease;
+}
+
+.shareCircle:hover {
+  opacity: 0.7;
+}
+
+.shareCircleIcon {
+  display: block;
+  color: #fff;
+  flex: 0 0 auto;
+}
+
+/* ajustements visuels pour harmoniser */
+.shareCircleIconFacebook {
+  width: 25px;
+  height: 25px;
+}
+
+.shareCircleIconWhatsapp {
+  width: 21px;
+  height: 21px;
+}
+
+.shareCircleIconInstagram {
+  width: 24px;
+  height: 24px;
+}
+
+.shareCircleIconEmail {
+  width: 25px;
+  height: 25px;
+}
+
+.shareMailLabel {
+  color: #fff;
+  line-height: 1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
   .desktopNav {
     display: none;
   }
@@ -266,16 +403,14 @@
 }
 
 @media (min-width: 1025px) {
-
   .header {
     padding: 2.5rem;
-  } 
+  }
 
   .mobileActions,
   .mobileMenu {
     display: none;
   }
-  
 }
 
 @media (max-width: 640px) {
@@ -298,5 +433,18 @@
 
   .mobileLink {
     font-size: 25px;
+  }
+
+  .shareModal {
+    padding: 24px 18px 20px;
+  }
+
+  .shareTitle {
+    font-size: 24px;
+  }
+
+  .shareCircle {
+    width: 48px;
+    height: 48px;
   }
 }

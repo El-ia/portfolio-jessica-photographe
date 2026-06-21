@@ -11,7 +11,7 @@ import { WhatsappIcon } from "@/components/icons/WhatsappIcon";
 import { EmailIcon } from "@/components/icons/EmailIcon";
 
 const INSTAGRAM_URL = "https://www.instagram.com/rozatelli_images/";
-const SITE_URL = "https://jessica-rozycka.com";
+const SITE_URL = "https://jessicarozyckaphoto.fr";
 
 export function Header() {
   const pathname = usePathname();

@@ -12,6 +12,20 @@ import ReviewsCarousel from "./ReviewsCarousel";
 import { client } from "@/sanity/lib/client";
 import { reviewsQuery } from "@/sanity/queries";
 import type { Review } from "@/sanity/types";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "À propos",
+  description:
+    "Découvrez Jessica Rozycka, photographe professionnelle passionnée basée en Île-de-France. Ses clients : TikTok, LinkedIn, Snapchat, Indeed, Decathlon, Pinterest.",
+  alternates: { canonical: "/a-propos" },
+  openGraph: {
+    title: "À propos – Jessica Rozycka Photographe",
+    description:
+      "Photographe passionnée depuis l'enfance, basée en Île-de-France. Événementiel, plateau, social media.",
+    url: "https://jessicarozyckaphoto.fr/a-propos",
+  },
+};
 
 const values = [
   { icon: Smile, label: "Good Vibes" },

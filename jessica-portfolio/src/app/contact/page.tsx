@@ -1,4 +1,18 @@
 import styles from "./page.module.css";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Contactez Jessica Rozycka pour votre projet photo : événementiel, plateau, social media. Basée en Île-de-France, réponse sous 24h.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact – Jessica Rozycka Photographe",
+    description:
+      "Un projet, une envie ? Discutons ensemble. Réponse sous 24h.",
+    url: "https://jessicarozyckaphoto.fr/contact",
+  },
+};
 
 type Props = {
   searchParams?: { success?: string };
